@@ -36,6 +36,12 @@ export class EmployeeFormComponent implements OnInit {
       const id = result.get('id');
       if (id) {
         this.isEditing = true;
+
+        this.employeeService.getEmployee(Number(id)).subscribe({
+          next: (employee: Employee) => (this.employee = employee),
+          error: (error) =>
+            (this.errorMessage = `Error occured (${error.status})`),
+        });
       }
     });
   }
