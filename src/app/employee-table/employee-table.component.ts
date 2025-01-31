@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../employee.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'employee-table',
@@ -13,7 +14,10 @@ import { CommonModule } from '@angular/common';
 export class EmployeeTableComponent {
   employees: Employee[] = [];
 
-  constructor(private employeeService: EmployeeService) {}
+  constructor(
+    private employeeService: EmployeeService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.employeeService.getEmployees().subscribe((employees: Employee[]) => {
@@ -33,5 +37,9 @@ export class EmployeeTableComponent {
         console.error('There was an error deleting the employee!', error);
       },
     });
+  }
+
+  editEmployee(id: number): void {
+    this.router.navigate(['/edit', id]);
   }
 }
