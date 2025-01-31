@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../employee.service';
 import { CommonModule } from '@angular/common';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './employee-table.component.html',
   styleUrl: './employee-table.component.css',
 })
-export class EmployeeTableComponent {
+export class EmployeeTableComponent implements OnInit {
   employees: Employee[] = [];
 
   constructor(
