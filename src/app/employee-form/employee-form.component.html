@@ -4,7 +4,11 @@
   {{ errorMessage }}
 </div>
 
-<form (ngSubmit)="onSubmit()" class="border rounded p-5 w-50 mb-5 mx-auto">
+<form
+  #employeeForm="ngForm"
+  (ngSubmit)="onSubmit()"
+  class="border rounded p-5 w-50 mb-5 mx-auto"
+>
   <div class="mb-3">
     <label class="form-label" for="firstName">First Name*</label>
     <input
@@ -90,7 +94,11 @@
     </div>
   </div>
 
-  <button class="btn btn-primary" type="submit">
+  <button
+    class="btn btn-primary"
+    type="submit"
+    [disabled]="employeeForm.invalid"
+  >
     {{ isEditing ? "Edit " : "Create" }}
   </button>
 </form>
